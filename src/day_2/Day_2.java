@@ -13,17 +13,17 @@ import java.util.regex.Pattern;
  */
 public class Day_2 {
 
-    public void isValid() {
+    public void isValid_1() {
         List<Input> inputList = Input.splitInput();
         int matches = 0;
         int correct = 0;
 
-        for (int i = 0; i < inputList.size(); i++) {
-            Matcher matcher = Pattern.compile(inputList.get(i).getCharacter()).matcher(inputList.get(i).getPassword());
+        for (Input input : inputList) {
+            Matcher matcher = Pattern.compile(input.getCharacter()).matcher(input.getPassword());
             while (matcher.find())
                 matches++;
 
-            if (inputList.get(i).getMin() <= matches && inputList.get(i).getMax() >= matches) {
+            if (input.getMin() <= matches && input.getMax() >= matches) {
                 correct++;
                 System.out.println("true");
                 matches = 0;
@@ -34,9 +34,6 @@ public class Day_2 {
 
     public void isValid_2() {
         List<Input> inputList = Input.splitInput();
-        int correct = 0;
-//        if (inputList.get(0).getPassword().length() < inputList.get(0).getMin() ||
-//                inputList.get(0).getPassword().length() < inputList.get(0).getMax())
         int i = 0;
         int j = 0;
         for (Input input : inputList) {
@@ -45,25 +42,16 @@ public class Day_2 {
             String second = String.valueOf(psw.charAt(input.getMax() - 1));
             String character = input.getCharacter();
             System.out.println(i++ + "-" + character + "---" + first + "---" + second);
-            if (character.equalsIgnoreCase(first) & !character.equalsIgnoreCase(second)) {
-                correct++;
-                System.out.println("----true----");
-            } else if (character.equalsIgnoreCase(second) && !character.equalsIgnoreCase(first)) {
-                correct++;
-                System.out.println("----true2----");
-            }  if (character.equals(first) ^ character.equals(second)){
+              if (character.equals(first) ^ character.equals(second)){
                 j++;
-                System.out.println("----true3----");
-
+                System.out.println("----true----");
             }
         }
-        System.out.println(correct + " " + j);
+        System.out.println(j);
     }
-
-
-    //4-5 r: rrrjr
     public static void main(String[] args) {
         Day_2 day2 = new Day_2();
-        day2.isValid_2();
+        day2.isValid_1();//398
+        day2.isValid_2();//562
     }
 }

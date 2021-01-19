@@ -14,8 +14,8 @@ import java.util.Scanner;
  * Copyright: MIT
  */
 public class Input {
-    private String character ;
-    private String password ;
+    private String character;
+    private String password;
     private int min;
     private int max;
 
@@ -56,7 +56,6 @@ public class Input {
     public static List<String> readFile() {
         List<String> input = new ArrayList<>();
         File myObj = new File("src/day_2/day2.txt");
-        File myObjTest = new File("src/day_2/day2Test.txt");
         try {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
@@ -79,17 +78,12 @@ public class Input {
             String in = s.get(i);
             String[] dash = in.split("-");
             String[] m = dash[1].split(" ");
-            input.setMin( Integer.parseInt(dash[0]));
+            input.setMin(Integer.parseInt(dash[0]));
             input.setMax(Integer.parseInt(m[0]));
             input.setCharacter(m[1].substring(0, 1));
-            input.setPassword( m[2]);
+            input.setPassword(m[2]);
             inputList.add(input);
         }
         return inputList;
     }
-
-    public static void main(String[] args) {
-        splitInput();
-    }
-
 }
